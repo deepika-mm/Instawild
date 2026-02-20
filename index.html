@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Wildlife Detection System{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <h1 class="display-3 fw-bold mb-4">Wildlife Detection & Monitoring System</h1>
+                <p class="lead mb-4">Advanced AI-powered platform for detecting wild animals, analyzing wounds, and monitoring behavior patterns using cutting-edge technology.</p>
+                <div class="d-flex gap-3">
+                    {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('upload') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-upload"></i> Upload Image
+                        </a>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-chart-line"></i> Dashboard
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
+                            <i class="fas fa-user-plus"></i> Get Started
+                        </a>
+                        <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=800" alt="Wildlife" class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="features-section py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Key Features</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-robot fa-3x text-primary"></i>
+                        </div>
+                        <h4 class="card-title">YOLO Detection</h4>
+                        <p class="card-text">State-of-the-art YOLO (You Only Look Once) algorithm for real-time animal detection with high accuracy and speed.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-heartbeat fa-3x text-danger"></i>
+                        </div>
+                        <h4 class="card-title">Wound Detection</h4>
+                        <p class="card-text">Advanced image analysis to identify and assess injuries on wild animals for wildlife conservation efforts.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-brain fa-3x text-success"></i>
+                        </div>
+                        <h4 class="card-title">Behavior Analysis</h4>
+                        <p class="card-text">Intelligent behavior pattern recognition to understand animal activities and behavioral states.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-envelope fa-3x text-info"></i>
+                        </div>
+                        <h4 class="card-title">Email Notifications</h4>
+                        <p class="card-text">Instant email alerts with detailed prediction results sent directly to your inbox after each analysis.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-chart-bar fa-3x text-warning"></i>
+                        </div>
+                        <h4 class="card-title">Analytics Dashboard</h4>
+                        <p class="card-text">Comprehensive charts and visualizations to track detection history and analyze patterns over time.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-lock fa-3x text-secondary"></i>
+                        </div>
+                        <h4 class="card-title">Secure Authentication</h4>
+                        <p class="card-text">Protected user accounts with encrypted passwords and secure session management for data privacy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cta-section py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to Start Detecting Wildlife?</h2>
+        <p class="lead mb-4">Join our platform and contribute to wildlife conservation through AI-powered detection.</p>
+        {% if not current_user.is_authenticated %}
+        <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">
+            <i class="fas fa-rocket"></i> Create Free Account
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

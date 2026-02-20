@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Detection Result - Wildlife Detection System{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="fas fa-image"></i> Uploaded Image</h5>
+                </div>
+                <div class="card-body text-center">
+                    {# `image_path` is stored relative to `static`, e.g. 'uploads/2023...jpg' #}
+                    <img src="{{ url_for('static', filename=prediction.image_path) }}" 
+                        alt="Analyzed Image" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="fas fa-chart-line"></i> Detection Results</h5>
+                </div>
+                <div class="card-body">
+                    <div class="result-item mb-3">
+                        <h6 class="text-muted">Animal Detected</h6>
+                        <h4 class="text-primary">
+                            <i class="fas fa-paw"></i> {{ prediction.animal_detected }}
+                        </h4>
+                    </div>
+                    
+                    <div class="result-item mb-3">
+                        <h6 class="text-muted">Confidence Level</h6>
+                        <div class="progress" style="height: 30px;">
+                            <div class="progress-bar bg-success" role="progressbar" 
+                                 style="width: {{ prediction.confidence }}%;">
+                                {{ prediction.confidence }}%
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-item mb-3">
+                        <h6 class="text-muted">Wound Status</h6>
+                        {% if prediction.wound_detected %}
+                        <h5><span class="badge bg-danger fs-6">
+                            <i class="fas fa-exclamation-triangle"></i> Wound Detected
+                        </span></h5>
+                        {% else %}
+                        <h5><span class="badge bg-success fs-6">
+                            <i class="fas fa-check-circle"></i> No Wounds Detected
+                        </span></h5>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="result-item mb-3">
+                        <h6 class="text-muted">Behavior Analysis</h6>
+                        <h5><span class="badge bg-info fs-6">
+                            <i class="fas fa-brain"></i> {{ prediction.behavior }}
+                        </span></h5>
+                    </div>
+                    
+                    <div class="result-item mb-3">
+                        <h6 class="text-muted">Analysis Date</h6>
+                        <p><i class="fas fa-calendar"></i> {{ prediction.created_at.strftime('%B %d, %Y at %I:%M %p') }}</p>
+                    </div>
+                    
+                    <div class="alert alert-info mt-4">
+                        <i class="fas fa-envelope"></i> Detailed results have been sent to your email.
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('upload') }}" class="btn btn-primary">
+                            <i class="fas fa-upload"></i> Analyze Another Image
+                        </a>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

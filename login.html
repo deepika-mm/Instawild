@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Login - Wildlife Detection System{% endblock %}
+
+{% block content %}
+<style>
+/* Soft pastel background inside the register card */
+.cute-bg {
+    background: linear-gradient(145deg, #fff6fa, #eaf7ff, #fff8e6);
+    border-radius: 22px;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Cute small animal icons */
+.animal-icon {
+    width: 36px;
+    position: absolute;
+    opacity: 0.95;
+}
+
+/* Corner placements */
+.icon-top-left { top: 15px; left: 15px; }
+.icon-top-right { top: 15px; right: 15px; }
+.icon-bottom-left { bottom: 15px; left: 15px; }
+.icon-bottom-right { bottom: 15px; right: 15px; }
+
+/* Soft center watermark */
+.icon-center {
+    width: 65px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.12;
+}
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow cute-bg">
+                <div class="card-body p-5">
+                    <!-- Cute Animal Icons (PNG only, no GIFs) -->
+<img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="animal-icon icon-top-left">
+<img src="https://cdn-icons-png.flaticon.com/512/1998/1998592.png" class="animal-icon icon-top-right">
+<img src="https://cdn-icons-png.flaticon.com/512/1998/1998671.png" class="animal-icon icon-bottom-left">
+<img src="https://cdn-icons-png.flaticon.com/512/1998/1998627.png" class="animal-icon icon-bottom-right">
+
+<!-- Soft center watermark animal -->
+<img src="https://cdn-icons-png.flaticon.com/512/346/346176.png" class="animal-icon icon-center">
+
+                    <h2 class="text-center mb-4">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </h2>
+                    <form method="POST" action="{{ url_for('login') }}">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-arrow-right"></i> Login
+                        </button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

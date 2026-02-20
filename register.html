@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %}Register - Wildlife Detection System{% endblock %}
+
+{% block content %}
+<style>
+/* Updated cute gradient for inside the register card */
+.cute-bg {
+    background: linear-gradient(145deg, #fff5fa, #e8f6ff, #fff9e8);
+    border-radius: 22px;
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Soft floating lights */
+.cute-bg::before {
+    content: "";
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 200, 255, 0.45);
+    border-radius: 50%;
+    filter: blur(20px);
+}
+
+.cute-bg::after {
+    content: "";
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    width: 150px;
+    height: 150px;
+    background: rgba(180, 225, 255, 0.45);
+    border-radius: 50%;
+    filter: blur(20px);
+}
+
+/* Cute animal icons (static small PNG) */
+.animal-icon {
+    width: 38px;
+    position: absolute;
+    opacity: 0.9;
+}
+
+/* Animated animal GIFs */
+.animal-gif {
+    width: 45px;
+    position: absolute;
+    opacity: 0.9;
+}
+
+/* Random placements */
+.icon-top-left { top: 10px; left: 10px; }
+.icon-top-right { top: 10px; right: 10px; }
+.icon-bottom-left { bottom: 10px; left: 10px; }
+.icon-bottom-right { bottom: 10px; right: 10px; }
+.icon-center { top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.15; }
+</style>
+
+<style>
+    /* Full page background */
+    body {
+        background: linear-gradient(135deg, #d4f1ff, #ffe6f7);
+        background-attachment: fixed;
+    }
+
+    /* Register card background */
+    .register-card {
+        background: linear-gradient(135deg, #ffffff, #f7fbff);
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Cute animal icons */
+    .cute-animal {
+        width: 55px;
+        position: absolute;
+        opacity: 0.9;
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .a1 { top: 10px; left: 10px; }
+    .a2 { top: 10px; right: 10px; }
+    .a3 { bottom: 10px; left: 10px; }
+    .a4 { bottom: 10px; right: 10px; }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-6px); }
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow cute-bg">
+
+                <div class="card-body p-5">
+                    <!-- Cute Animal Icons (PNG only, no GIFs) -->
+<img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="animal-icon icon-top-left">
+<img src="https://cdn-icons-png.flaticon.com/512/1998/1998592.png" class="animal-icon icon-top-right">
+<img src="https://cdn-icons-png.flaticon.com/512/1998/1998671.png" class="animal-icon icon-bottom-left">
+<img src="https://cdn-icons-png.flaticon.com/512/1998/1998627.png" class="animal-icon icon-bottom-right">
+
+<!-- Soft center watermark animal -->
+<img src="https://cdn-icons-png.flaticon.com/512/346/346176.png" class="animal-icon icon-center">
+
+                    <h2 class="text-center mb-4">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </h2>
+                    <form method="POST" action="{{ url_for('register') }}">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">
+                            <i class="fas fa-check"></i> Register
+                        </button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
